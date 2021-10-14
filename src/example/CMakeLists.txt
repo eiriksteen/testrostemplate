@@ -7,29 +7,15 @@ if(NOT CMAKE_C_STANDARD)
 endif()
 
 # Default to C++14
-if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
-endif()
+
+set(CMAKE_CXX_STANDARD 14)
+
 
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+        googletest
+        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 )
-
-enable_testing()
-
-add_executable(
-  hello_test
-  hello_test.cc
-)
-target_link_libraries(
-  hello_test
-  gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(hello_test)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -64,3 +50,17 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
+enable_testing()
+
+add_executable(
+        testtest
+        testtest.cpp
+)
+target_link_libraries(
+        testtest
+        gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(testtest)
