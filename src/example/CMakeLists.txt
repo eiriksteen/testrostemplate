@@ -8,14 +8,15 @@ endif()
 
 # Default to C++14
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
+#include(FetchContent)
+#FetchContent_Declare(
+#        googletest
+#        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+#)
 
-include(FetchContent)
-FetchContent_Declare(
-        googletest
-        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-)
+#option(gtest_force_shared_crt "b" ON)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -47,20 +48,23 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 
+  find_package(ament_cmake_gtest)
+  ament_cmake_gtest(${TESTROSTEMPLATE}testtest testtest.cc)
+
 endif()
 
 ament_package()
 
-enable_testing()
+#enable_testing()
 
-add_executable(
-        testtest
-        testtest.cc
-)
-target_link_libraries(
-        testtest
-        gtest_main
-)
+#add_executable(
+#        testtest
+#        testtest.cc
+#)
+#target_link_libraries(
+#        testtest
+#        gtest_main
+#)
 
-include(GoogleTest)
-gtest_discover_tests(testtest)
+#include(GoogleTest)
+#gtest_discover_tests(testtest)
