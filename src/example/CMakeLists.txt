@@ -55,7 +55,7 @@ enable_testing()
 
 add_executable(
         testtest
-        src/example/testtest.cc
+        example/testtest.cc
 )
 target_link_libraries(
         testtest
