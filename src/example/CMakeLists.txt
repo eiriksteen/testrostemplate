@@ -21,20 +21,6 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-enable_testing()
-
-add_executable(
-  testtest
-  testtest.cc
-)
-target_link_libraries(
-  testtest
-  gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(testtest)
-
 # find dependencies
 find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
@@ -56,7 +42,7 @@ if(BUILD_TESTING)
   set(ament_cmake_copyright_FOUND TRUE)
   # the following line skips cpplint (only works in a git repo)
   # uncomment the line when this package is not in a git repo
-  set(ament_cmake_cpplint_FOUND TRUE)
+  #set(ament_cmake_cpplint_FOUND TRUE)
   set(ament_cmake_uncrustify_FOUND TRUE)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
@@ -64,3 +50,16 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
+enable_testing()
+add_executable(
+  hello_test
+  hello_test.cc
+)
+target_link_libraries(
+  hello_test
+  gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(hello_test)
