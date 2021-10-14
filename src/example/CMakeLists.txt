@@ -52,6 +52,7 @@ endif()
 ament_package()
 
 enable_testing()
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 add_executable(
   hello_test
   hello_test.cc
